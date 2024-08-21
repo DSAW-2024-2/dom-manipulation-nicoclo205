@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mi hoja de vida</title>
+        <title>Carrusel de fotos</title>
         <link rel="stylesheet" href="Styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
@@ -11,8 +11,14 @@
     <body>
         <div class="container">
             <h1 class="h1">Galería de fotos</h1>
-            <div class="img-box">
-                <img src="" alt="">
+            <div class="img-box-container">
+                <button onclick="previous_image()" class="button1" id="previous">anterior
+                </button>
+                <div class="img-box">
+                    <img src="image_1.jpg" alt="image" id="image">
+                </div>
+                <button onclick="next_image()" class="button2" id="next">siguiente
+                </button>
             </div>
         </div>
         <script src="Script.js"></script>
