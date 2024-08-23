@@ -12,13 +12,12 @@ function changeImage(newIndex) {
             imageElement.src = images[i];
             imageElement.classList.remove('fade-out');
             imageElement.classList.add('fade-in');
+            updateButtonColors();
             
             setTimeout(() => {
                 imageElement.classList.remove('fade-in');
             }, 500);
         }, 500);
-
-        updateButtonColors();
     }
 }
 
@@ -27,12 +26,20 @@ function next_image() {
 }
 
 function previous_image() {
-    changeImage(i - 1);
+    changeImage(i - 1); 
 }
 
 function updateButtonColors() {
-    document.getElementById("previous").style.color = i > 0 ? "white" : "black";
-    document.getElementById("next").style.color = i < images.length - 1 ? "white" : "#0011ff";
+    if(i > 0 || i < images.length - 1) {
+        document.getElementById("next").style.color = "white";
+        document.getElementById("previous").style.color = "white";
+    }
+    if (i === 0) {
+        document.getElementById("previous").style.color = "black";
+    }
+    if(i === images.length - 1) {
+        document.getElementById("next").style.color = "#0011ff";
+    }
 }
 
 // Inicializar colores de botones
