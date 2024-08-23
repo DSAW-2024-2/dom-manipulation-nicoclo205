@@ -1,24 +1,39 @@
 let i = 0;
 const images = ["image_1.jpg", "image_2.jpeg", "image_3.jpeg"];
-document.getElementById("image").src = images[i];
-function next_image() {
-    if (i < images.length-1) {
-        i++;
-        document.getElementById("image").src = images[i];
-        document.getElementById("previous").style.color = "white";
-    }
-    else {
-        document.getElementById("next").style.color = "#0011ff";
+const imageElement = document.getElementById("image");
+imageElement.src = images[i];
+
+function changeImage(newIndex) {
+    if (newIndex >= 0 && newIndex < images.length && newIndex !== i) {
+        imageElement.classList.add('fade-out');
+        
+        setTimeout(() => {
+            i = newIndex;
+            imageElement.src = images[i];
+            imageElement.classList.remove('fade-out');
+            imageElement.classList.add('fade-in');
+            
+            setTimeout(() => {
+                imageElement.classList.remove('fade-in');
+            }, 500);
+        }, 500);
+
+        updateButtonColors();
     }
 }
 
-function previous_image() {
-    if (i > 0) {
-        i--;
-        document.getElementById("image").src = images[i];
-        document.getElementById("next").style.color = "white";
-    }
-    else {
-        document.getElementById("previous").style.color = "black";
-    }
+function next_image() {
+    changeImage(i + 1);
 }
+
+function previous_image() {
+    changeImage(i - 1);
+}
+
+function updateButtonColors() {
+    document.getElementById("previous").style.color = i > 0 ? "white" : "black";
+    document.getElementById("next").style.color = i < images.length - 1 ? "white" : "#0011ff";
+}
+
+// Inicializar colores de botones
+updateButtonColors();
